@@ -42,6 +42,9 @@ jobs:
           sed 's@keystore/release_user=".*"@keystore/release_user="'$ANDROID_KEYSTORE_USER'"@g' -i export_presets.cfg
           sed 's@keystore/release_password=".*"@keystore/release_password="'$ANDROID_KEYSTORE_PW'"@g' -i export_presets.cfg
 
+      - name: Prepare Build
+        run: ./scripts/ci/prepare-build.sh ${GITHUB_REF/refs\/tags\//}
+
       - name: Build
         run: ./scripts/ci/build-channel.sh $CHANNEL
 
