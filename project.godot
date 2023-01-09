@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://addons/godot-css-theme/ArgumentParser.gd"
 }, {
 "base": "Reference",
+"class": "Build",
+"language": "GDScript",
+"path": "res://shared/env/Build.gd"
+}, {
+"base": "Reference",
 "class": "CSSParser",
 "language": "GDScript",
 "path": "res://addons/godot-css-theme/CSSParser.gd"
@@ -141,6 +146,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ArgumentParser": "",
+"Build": "",
 "CSSParser": "",
 "CSSSimplifier": "",
 "CacheManager": "",

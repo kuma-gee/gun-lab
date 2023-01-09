@@ -14,9 +14,8 @@ if [ -z "$CLIENT_VERSION" ]; then
 	fi
 fi
 
-cat << EOF > src/autoload/Build.gd
-extends Node
-func _ready() -> void:
-	Env.version = '$CLIENT_VERSION'
-	Env.log_level = Level.INFO
+cat << EOF > shared/env/Build.gd
+class_name Build
+
+const version = '$CLIENT_VERSION'
 EOF

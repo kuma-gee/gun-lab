@@ -12,12 +12,12 @@ enum Level {
 
 const DEBUG_SCENE = preload("res://shared/env/Debug.tscn")
 
-var version = DEV_VERSION setget _set_version
-var log_level = Level.DEBUG
+var version = Build.version setget _set_version
+var log_level = Level.INFO if is_prod() else Level.DEBUG
 
-func _set_version(v: String) -> void:
-	if v == "": return
-	version = v
+func _set_version(v: String):
+	version = v if v != "" else DEV_VERSION
+
 
 func _unhandled_input(event):
 	if event.is_action_pressed("dev"):
