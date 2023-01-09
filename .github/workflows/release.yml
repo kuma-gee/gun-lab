@@ -43,7 +43,7 @@ jobs:
           sed 's@keystore/release_password=".*"@keystore/release_password="'$ANDROID_KEYSTORE_PW'"@g' -i export_presets.cfg
 
       - name: Prepare Build
-        run: ./scripts/ci/prepare-build.sh ${GITHUB_REF/refs\/tags\//}
+        run: ./scripts/ci/prepare-build.sh $GITHUB_REF_NAME
 
       - name: Build
         run: ./scripts/ci/build-channel.sh $CHANNEL
@@ -54,7 +54,7 @@ jobs:
         env:
           BUTLER_API_KEY: ${{secrets.BUTLER_API_KEY}}
           USER: ${{secrets.ITCHIO_USER}}
-        run: butler push build/$CHANNEL $USER/$GAME:$CHANNEL --userversion ${GITHUB_REF/refs\/tags\//}
+        run: butler push build/$CHANNEL $USER/$GAME:$CHANNEL --userversion $GITHUB_REF_NAME
 
       - name: Package builds
         if: |
