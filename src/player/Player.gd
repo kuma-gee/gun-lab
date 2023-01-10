@@ -6,6 +6,7 @@ onready var input := $PlayerInput
 onready var body := $Body
 onready var arm := $Body/ArmRoot
 
+var gravity = Vector2.DOWN * 100
 var velocity = Vector2.ZERO
 
 func _get_motion():
@@ -13,6 +14,7 @@ func _get_motion():
 
 func _physics_process(_delta):
 	velocity = _get_motion() * speed
+	velocity += gravity
 	velocity = move_and_slide(velocity)
 
 	var aim = _get_aim_dir()
