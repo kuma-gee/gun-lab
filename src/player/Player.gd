@@ -1,4 +1,4 @@
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 export var speed = 200
 
@@ -6,10 +6,10 @@ onready var input := $PlayerInput
 onready var body := $Body
 onready var arm := $Body/ArmRoot
 onready var anim := $AnimationPlayer
-onready var camera := $Camera2D
 
-var gravity = Vector2.DOWN * 100
+var gravity = Vector2.DOWN * 300
 var velocity = Vector2.ZERO
+var camera_point = null
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);

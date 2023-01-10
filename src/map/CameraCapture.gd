@@ -1,6 +1,8 @@
 extends Area2D
 
-onready var remote_transform := $RemoteTransform2D
+var logger = Logger.new("CameraCapture")
 
 func _on_CameraCapture_body_entered(body):
-	remote_transform.remote_path = remote_transform.get_path_to(body.camera)
+	body.camera_point = self
+	logger.info("Player entered camera capture: %s" % self)
+	
