@@ -1,29 +1,41 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/player/Body.png" type="Texture" id=1]
 [ext_resource path="res://src/player/GunArm_0.png" type="Texture" id=2]
 [ext_resource path="res://src/guns/Pistol.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/player/Player.gd" type="Script" id=4]
+[ext_resource path="res://shared/input/PlayerInput.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 14 )
 
 [node name="Player" type="KinematicBody2D"]
+script = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
-[node name="Body" type="Sprite" parent="CollisionShape2D"]
+[node name="Body" type="Sprite" parent="Body"]
 position = Vector2( 0, -1 )
 texture = ExtResource( 1 )
 hframes = 5
 
-[node name="Pistol" parent="CollisionShape2D" instance=ExtResource( 3 )]
-position = Vector2( -4, 4 )
+[node name="ArmRoot" type="Node2D" parent="Body"]
+position = Vector2( 2, 1 )
 
-[node name="Arm" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( -1, -1 )
+[node name="Pistol" parent="Body/ArmRoot" instance=ExtResource( 3 )]
+position = Vector2( -6, 3 )
+
+[node name="Arm" type="Sprite" parent="Body/ArmRoot"]
+position = Vector2( -4, -2 )
 texture = ExtResource( 2 )
 
-[node name="Position2D" type="Position2D" parent="CollisionShape2D/Arm"]
+[node name="Position2D" type="Position2D" parent="Body/ArmRoot/Arm"]
 position = Vector2( -3, 5 )
+
+[node name="PlayerInput" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
