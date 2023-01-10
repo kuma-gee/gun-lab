@@ -6,6 +6,7 @@ onready var input := $PlayerInput
 onready var body := $Body
 onready var arm := $Body/ArmRoot
 onready var anim := $AnimationPlayer
+onready var camera := $Camera2D
 
 var gravity = Vector2.DOWN * 100
 var velocity = Vector2.ZERO
