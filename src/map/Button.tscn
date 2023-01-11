@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/map/Button_0.png" type="Texture" id=1]
+[ext_resource path="res://shared/combat/HurtBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/map/Button.gd" type="Script" id=3]
+
+[node name="Button" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="HurtBox" parent="." instance=ExtResource( 2 )]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[connection signal="hit" from="HurtBox" to="." method="_on_HurtBox_hit"]
+
+[editable path="HurtBox"]
