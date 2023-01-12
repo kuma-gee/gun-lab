@@ -1,8 +1,11 @@
 extends Node2D
 
-onready var gun_line := $GunLine
+export var bullet_scene: PackedScene
+
+onready var bullet_pos := $Position2D
 
 func fire():
-	var collider = gun_line.get_collider()
-	if collider is HurtBox:
-		collider.damage(1)
+	var bullet = bullet_scene.instance()
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = bullet_pos.global_position
+	bullet.global_rotation = bullet_pos.global_rotation
