@@ -122,6 +122,7 @@ position = Vector2( 2, 2 )
 
 [node name="Pistol" parent="Body/ArmRoot" instance=ExtResource( 3 )]
 position = Vector2( -6, 3 )
+max_ammo = 5
 
 [node name="Arm" type="Sprite" parent="Body/ArmRoot"]
 position = Vector2( -4, -2 )

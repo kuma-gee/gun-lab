@@ -48,3 +48,5 @@ func _get_aim_dir():
 func _on_PlayerInput_just_pressed(action):
 	if action == "fire":
 		pistol.fire()
+	elif action == "reload":
+		pistol.reload()
