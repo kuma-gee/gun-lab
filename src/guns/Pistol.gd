@@ -5,18 +5,27 @@ export var bullet_scene: PackedScene
 
 onready var bullet_pos := $Position2D
 onready var fire_rate_timer := $FireRate
+onready var shoot_sound := $Shoot
+onready var out_of_ammo_sound := $OutOfAmmo
+onready var reload_sound := $Reload
 
 onready var ammo = max_ammo
 
 var can_fire = true
 
 func reload():
+	reload_sound.play()
 	ammo = max_ammo
 
 func fire():
 	if not can_fire: return
 	
-	if ammo <= 0: return
+	can_fire = false
+	fire_rate_timer.start()
+	
+	if ammo <= 0:
+		out_of_ammo_sound.play()
+		return
 	
 	ammo -= 1
 	
@@ -24,8 +33,7 @@ func fire():
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = bullet_pos.global_position
 	bullet.global_rotation = bullet_pos.global_rotation
-	can_fire = false
-	fire_rate_timer.start()
+	shoot_sound.play()
 
 func _on_FireRate_timeout():
 	can_fire = true
