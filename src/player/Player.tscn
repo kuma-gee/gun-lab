@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/player/Body.png" type="Texture" id=1]
 [ext_resource path="res://src/player/GunArm_0.png" type="Texture" id=2]
 [ext_resource path="res://src/guns/Pistol.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=4]
 [ext_resource path="res://shared/input/PlayerInput.gd" type="Script" id=5]
+[ext_resource path="res://shared/items/Hand.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 11, 11 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 14 )
@@ -96,6 +100,12 @@ tracks/1/keys = {
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 4 )
+
+[node name="Hand" type="Area2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+shape = SubResource( 5 )
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )

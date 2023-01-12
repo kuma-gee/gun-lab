@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gut/test.gd"
 }, {
+"base": "Area2D",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://shared/items/Hand.gd"
+}, {
 "base": "Node",
 "class": "Health",
 "language": "GDScript",
@@ -159,6 +164,7 @@ _global_script_class_icons={
 "FadeEffect": "",
 "GutHookScript": "",
 "GutTest": "",
+"Hand": "",
 "Health": "",
 "HitBox": "",
 "HurtBox": "",
@@ -272,6 +278,10 @@ fire={
 
 translations=PoolStringArray( "res://i18n/de.po", "res://i18n/en.po", "res://i18n/ja.po" )
 locale_filter=[ 0, [  ] ]
+
+[physics]
+
+2d/default_gravity=20
 
 [rendering]
 
