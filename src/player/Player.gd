@@ -7,6 +7,8 @@ onready var body := $Body
 onready var arm := $Body/ArmRoot
 onready var anim := $AnimationPlayer
 
+onready var pistol := $Body/ArmRoot/Pistol
+
 var gravity = Vector2.DOWN * 300
 var velocity = Vector2.ZERO
 var camera_point = null
@@ -36,3 +38,8 @@ func _physics_process(_delta):
 func _get_aim_dir():
 	return global_position.direction_to(get_global_mouse_position()).normalized()
 
+
+
+func _on_PlayerInput_just_pressed(action):
+	if action == "fire":
+		pistol.fire()
