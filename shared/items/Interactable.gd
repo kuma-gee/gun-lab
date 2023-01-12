@@ -18,5 +18,5 @@ func unhighlight():
 		sprite.material = null
 
 
-func interact(actor):
+func interact(_actor):
 	emit_signal("interacted")

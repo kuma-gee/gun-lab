@@ -1,9 +1,9 @@
 extends Node2D
 
 export var dir := Vector2.LEFT
-export var speed := 10
+export var speed := 100
 
-func _process(delta):
+func _process(_delta):
 	var d = dir.rotated(rotation)
 	position += d * speed
 
