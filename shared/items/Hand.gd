@@ -1,5 +1,7 @@
 class_name Hand extends Area2D
 
+onready var actor := owner
+
 var last_interacted: Interactable
 var closest: Interactable
 
@@ -11,14 +13,9 @@ func _on_exit(area):
 	area.unhighlight()
 
 
-func reinteract():
-	if last_interacted:
-		last_interacted.interact()
-
-
 func interact():
 	if closest:
-		closest.interact()
+		closest.interact(actor)
 		last_interacted = closest
 
 

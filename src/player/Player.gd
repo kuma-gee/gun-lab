@@ -8,8 +8,9 @@ onready var input := $PlayerInput
 onready var body := $Body
 onready var arm := $Body/ArmRoot
 onready var anim := $AnimationPlayer
+onready var hand := $Hand
 
-onready var pistol := $Body/ArmRoot/Pistol
+onready var weapons := $Body/ArmRoot/Weapons
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
 
@@ -46,7 +47,18 @@ func _get_aim_dir():
 
 
 func _on_PlayerInput_just_pressed(action):
+	if action == "interact":
+		hand.interact()
 	if action == "fire":
-		pistol.fire()
+		weapons.get_active_weapon().fire()
 	elif action == "reload":
-		pistol.reload()
+		weapons.get_active_weapon().reload()
+	elif action == "weapon_1":
+		weapons.active_weapon_idx = 0
+	elif action == "weapon_2":
+		weapons.active_weapon_idx = 1
+	elif action == "weapon_3":
+		weapons.active_weapon_idx = 2
+		
+func pickup_weapon(weapon: PackedScene):
+	weapons.add_weapon(weapon)
