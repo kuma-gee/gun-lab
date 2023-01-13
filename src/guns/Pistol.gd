@@ -1,4 +1,4 @@
-extends Node2D
+class_name Pistol extends Node2D
 
 export var max_ammo = 10
 export var bullet_scene: PackedScene
@@ -17,8 +17,8 @@ func reload():
 	reload_sound.play()
 	ammo = max_ammo
 
-func fire():
-	if not can_fire: return
+func fire(_actor: Player):
+	if not can_fire: return false
 	
 	can_fire = false
 	fire_rate_timer.start()
@@ -34,6 +34,7 @@ func fire():
 	bullet.global_position = bullet_pos.global_position
 	bullet.global_rotation = bullet_pos.global_rotation
 	shoot_sound.play()
+	return true
 
 func _on_FireRate_timeout():
 	can_fire = true

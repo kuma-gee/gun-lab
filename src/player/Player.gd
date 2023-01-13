@@ -1,6 +1,6 @@
 class_name Player extends KinematicBody2D
 
-export var accel = 800
+export var accel = 1000
 export var speed = 200
 export var jump_force = 400
 
@@ -20,8 +20,8 @@ var camera_point = null
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);
 
-func _physics_process(_delta):
-	velocity.x = _get_motion().x * speed
+func _physics_process(delta):
+	velocity.x = move_toward(velocity.x, _get_motion().x * speed, accel * delta)
 	if input.is_pressed("jump") and is_on_floor():
 		velocity += Vector2.UP * jump_force
 	
@@ -50,7 +50,7 @@ func _on_PlayerInput_just_pressed(action):
 	if action == "interact":
 		hand.interact()
 	if action == "fire":
-		weapons.get_active_weapon().fire()
+		weapons.get_active_weapon().fire(self)
 	elif action == "reload":
 		weapons.get_active_weapon().reload()
 	elif action == "weapon_1":
@@ -62,3 +62,6 @@ func _on_PlayerInput_just_pressed(action):
 		
 func pickup_weapon(weapon: PackedScene):
 	weapons.add_weapon(weapon)
+
+func knockback(force: Vector2):
+	velocity += force
