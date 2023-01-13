@@ -7,7 +7,6 @@ func _process(_delta):
 	var d = dir.rotated(rotation)
 	move_and_slide(d * speed)
 
-
 func _on_HitBox_hit():
 	queue_free()
 

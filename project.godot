@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-css-theme/Options.gd"
 }, {
+"base": "TileMap",
+"class": "ParentRoom",
+"language": "GDScript",
+"path": "res://src/map/Room.gd"
+}, {
 "base": "Node2D",
 "class": "Pistol",
 "language": "GDScript",
@@ -180,6 +185,7 @@ _global_script_class_icons={
 "Menu": "",
 "OptParse": "",
 "Options": "",
+"ParentRoom": "",
 "Pistol": "",
 "Player": "",
 "PlayerInput": "",
@@ -321,5 +327,5 @@ locale_filter=[ 0, [  ] ]
 
 [rendering]
 
-environment/default_clear_color=Color( 0.196078, 0.196078, 0.196078, 1 )
+environment/default_clear_color=Color( 0.105882, 0.105882, 0.105882, 1 )
 environment/default_environment="res://default_env.tres"

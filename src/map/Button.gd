@@ -1,9 +1,10 @@
 extends Node2D
 
-signal hit()
+export var door_coor := Vector2.ZERO
 
 onready var sprite := $Sprite
 
 func _on_HurtBox_hit():
-	emit_signal("hit")
+	print("hit")
+	owner.remove_tile(door_coor)
 	sprite.frame = 1

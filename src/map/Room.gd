@@ -1,7 +1,6 @@
-extends TileMap
+class_name ParentRoom extends TileMap
 
-var door_tiles = [Vector2(8, 4), Vector2(9, 4)]
+onready var room := $Room
 
-func open_right():
-	for tile in door_tiles:
-		set_cellv(tile, -1)
+func remove_tile(coor: Vector2):
+	room.set_cellv(coor, -1)

@@ -27,19 +27,22 @@ def get_sprite_num(sprite_name):
 def group_sprites(dir):
     groups = {}
     for entry in os.scandir(dir):
-        pattern = re.compile(r"(-)?\d+\.png$")
-        prefix = pattern.split(entry.name)[0]
+        if entry.name.endswith('.png'):
+            pattern = re.compile(r"(-)?\d+\.png$")
+            prefix = pattern.split(entry.name)[0]
 
-        if groups.get(prefix) is None:
-            groups[prefix] = []
+            if groups.get(prefix) is None:
+                groups[prefix] = []
 
-        groups[prefix].append(entry.path)
+            groups[prefix].append(entry.path)
 
-        groups[prefix] = sorted(groups[prefix], key=lambda e: (get_sprite_num(e), e))
+            groups[prefix] = sorted(groups[prefix], key=lambda e: (get_sprite_num(e), e))
     return groups
 
 def merge_images(images, max_columns=-1, use_max_sizes=False, gap=0):
     imgs = [Image.open(i) for i in images if i.endswith('.png')]
+    if len(imgs) == 0: return None
+
     widths, heights = zip(*(i.size for i in imgs))
 
     width = max(widths)
@@ -90,8 +93,10 @@ GROUPS = group_sprites(DIR)
 
 for key in GROUPS:
     new_img = merge_images(GROUPS[key])
-
-    name = key.replace("_", "")
-    file_name = f'{name}.png'
-    new_img.save(OUTPUT + '/' + file_name)
+    print(key)
+    if new_img:
+        print("export")
+        name = key.replace("_", "")
+        file_name = f'{name}.png'
+        new_img.save(OUTPUT + '/' + file_name)
 
