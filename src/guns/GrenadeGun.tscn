@@ -12,9 +12,7 @@ max_ammo = 2
 bullet_scene = ExtResource( 3 )
 force = 300
 bullet_gravity = 10
-
-[node name="Line2D" parent="." index="0"]
-width = 0.0
+trajectory_length = 5.0
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( -1, -4 )

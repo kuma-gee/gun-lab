@@ -7,7 +7,7 @@ onready var explosion_sound := $Explosion
 var velocity := Vector2.ZERO
 var started_explosion = false
 var stop = false
-var gravity = 10
+var gravity = Vector2.DOWN
 
 func _ready():
 	explosion_anim.hide()
@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(_delta):
 	if stop: return
 	
-	velocity += Vector2.DOWN * gravity
+	velocity += gravity
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	var last_collision = get_last_slide_collision()
