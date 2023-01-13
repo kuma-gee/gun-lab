@@ -2,7 +2,7 @@ extends Pistol
 
 export var force := 300
 export var bullet_gravity := 10
-export var trajectory_length := 5.0
+export var trajectory_length := 10
 
 onready var line2d := $Line2D
 
@@ -23,13 +23,13 @@ func _process(_delta):
 
 func _calc_trajectory():
 	var points = []
-	var time = 0.0
-	var step = 0.5
-	while time <= trajectory_length:
-		var initial_velocity = _fire_velocity()
-		var accel = _gravity()
+	var initial_velocity = _fire_velocity().rotated(deg2rad(-90))
+	var accel = _gravity()
+	var initial_pos = global_position
 
-		points.append((initial_velocity * time + 0.5 * accel * pow(time, 2)))
-		time += step
+	for x in range(0, trajectory_length):
+		var time = x
+		var point = initial_pos + (initial_velocity * time + 0.5 * accel * pow(time, 2))
+		points.append(to_local(point))
 	
 	line2d.points = points
