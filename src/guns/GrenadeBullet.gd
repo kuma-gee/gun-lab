@@ -6,21 +6,32 @@ onready var explosion_sound := $Explosion
 
 var velocity := Vector2.ZERO
 var started_explosion = false
+var stop = false
+var gravity = 10
+
+func _ready():
+	explosion_anim.hide()
+	explosion_anim.frame = 0
 
 func _physics_process(_delta):
-#	if stop_moving: return
+	if stop: return
 	
-	velocity += Vector2.DOWN * 10
+	velocity += Vector2.DOWN * gravity
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	var last_collision = get_last_slide_collision()
 	if last_collision and not started_explosion:
+		stop = true
+		global_position = last_collision.position
+
 		bullet.hide()
 		explosion_anim.show()
 		explosion_anim.playing = true
 		
 		explosion_sound.play()
-		rotation_degrees = deg2rad(last_collision.normal.angle())
+		var deg = rad2deg(Vector2.UP.angle_to(last_collision.normal))
+		rotation_degrees = deg
+		
 		started_explosion = true
 
 func _on_Explosion_finished():

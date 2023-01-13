@@ -18,7 +18,7 @@ func reload():
 	ammo = max_ammo
 
 func fire(_actor: Player):
-	if not can_fire: return false
+	if not can_fire: return null
 	
 	can_fire = false
 	fire_rate_timer.start()
@@ -34,7 +34,7 @@ func fire(_actor: Player):
 	bullet.global_position = bullet_pos.global_position
 	bullet.global_rotation = bullet_pos.global_rotation
 	shoot_sound.play()
-	return true
+	return bullet
 
 func _on_FireRate_timeout():
 	can_fire = true
