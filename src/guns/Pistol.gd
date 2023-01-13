@@ -14,6 +14,9 @@ onready var ammo = max_ammo
 var can_fire = true
 
 func reload():
+	if ammo == max_ammo:
+		return
+	
 	reload_sound.play()
 	ammo = max_ammo
 
