@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export var rotation_speed := 0.1
+
 onready var explosion_anim := $AnimatedSprite
 onready var bullet := $Sprite
 onready var explosion_sound := $Explosion
@@ -15,6 +17,8 @@ func _ready():
 
 func _physics_process(_delta):
 	if stop: return
+	
+	rotation += rotation_speed 
 	
 	velocity += gravity
 	velocity = move_and_slide(velocity, Vector2.UP)
