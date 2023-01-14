@@ -37,11 +37,14 @@ one_shot = true
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -5.0
+bus = "SFX"
 
 [node name="OutOfAmmo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="Reload" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]

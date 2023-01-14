@@ -19,3 +19,7 @@ texture = ExtResource( 2 )
 
 [node name="FireRate" parent="." index="3"]
 wait_time = 1.0
+
+[node name="Shoot" parent="." index="4"]
+volume_db = -15.0
+pitch_scale = 0.8

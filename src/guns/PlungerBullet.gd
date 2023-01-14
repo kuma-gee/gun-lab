@@ -3,8 +3,8 @@ extends KinematicBody2D
 onready var horizontal := $HorizontalCollision/CollisionShape2D
 onready var vertical := $VerticalCollision/CollisionShape2D
 onready var sprite := $Sprite
-onready var timer := $DespawnTimer
 onready var anim := $AnimationPlayer
+onready var sound := $Hit
 
 var velocity := Vector2.ZERO
 var gravity = Vector2.DOWN
@@ -36,8 +36,5 @@ func _physics_process(_delta):
 		
 		horizontal.disabled = is_vertical
 		vertical.disabled = not is_vertical
-		timer.start()
-
-
-func _on_DespawnTimer_timeout():
-	anim.play("Despawn")
+		anim.play("Despawn")
+		sound.play()
