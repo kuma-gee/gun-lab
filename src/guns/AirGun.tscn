@@ -9,7 +9,7 @@
 position = Vector2( 8, -1 )
 script = ExtResource( 4 )
 bullet_scene = ExtResource( 3 )
-knockback_force = 400
+knockback_force = 300
 
 [node name="Line2D" parent="." index="0"]
 visible = false

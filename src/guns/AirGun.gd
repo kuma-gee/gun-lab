@@ -1,6 +1,6 @@
 extends Pistol
 
-export var knockback_force := 400
+export var knockback_force := 300
 
 func fire(actor: Player):
 	if .fire(actor):

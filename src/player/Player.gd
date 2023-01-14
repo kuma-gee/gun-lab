@@ -59,6 +59,13 @@ func _on_PlayerInput_just_pressed(action):
 		weapons.active_weapon_idx = 1
 	elif action == "weapon_3":
 		weapons.active_weapon_idx = 2
+	elif action == "move_down":
+		var last_collision = get_last_slide_collision()
+		if last_collision:
+			print("last_collision", last_collision.collider)
+			var collider = last_collision.collider
+			if collider is OneWayCollision:
+				collider.add_exception(self)
 		
 func pickup_weapon(weapon: PackedScene):
 	weapons.add_weapon(weapon)
