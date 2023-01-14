@@ -92,11 +92,11 @@ OUTPUT = args.output
 GROUPS = group_sprites(DIR)
 
 for key in GROUPS:
+    name = key.replace("_", "")
+    print(f"Exporting {name}")
+
     new_img = merge_images(GROUPS[key])
-    print(key)
     if new_img:
-        print("export")
-        name = key.replace("_", "")
         file_name = f'{name}.png'
         new_img.save(OUTPUT + '/' + file_name)
 
