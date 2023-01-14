@@ -20,6 +20,8 @@ func _physics_process(_delta):
 	velocity += gravity
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
+	global_rotation = Vector2.LEFT.angle_to(velocity)
+	
 	var last_collision = get_last_slide_collision()
 	if last_collision:
 		stop = true
