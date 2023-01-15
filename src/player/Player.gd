@@ -14,6 +14,8 @@ onready var weapons := $Body/ArmRoot/Weapons
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
 
+var logger = Logger.new("Player")
+
 var velocity = Vector2.ZERO
 var camera_point = null
 var died = false
@@ -58,6 +60,7 @@ func _on_PlayerInput_just_pressed(ev: InputEvent):
 	if ev.is_action_pressed("interact"):
 		hand.interact()
 	elif ev.is_action_pressed("fire"):
+		logger.debug("Player fired weapon")
 		weapons.get_active_weapon().fire(self)
 	elif ev.is_action_pressed("reload"):
 		weapons.get_active_weapon().reload()
@@ -83,3 +86,4 @@ func _on_HurtBox_hit():
 	died = true
 	input.disable()
 	hide()
+	logger.debug("Player died")

@@ -12,7 +12,7 @@ func _ready():
 	message_label.text = message_text
 
 
-func _on_Interactable_interacted():
+func _on_Interactable_interacted(_actor):
 	message.global_position = global_position
 	message.show()
 	emit_signal("message_opened")

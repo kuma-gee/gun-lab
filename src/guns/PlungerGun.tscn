@@ -20,6 +20,7 @@ script = ExtResource( 5 )
 divisor = 30.0
 
 [node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -2 )
 texture = ExtResource( 2 )
 
 [node name="Position2D" parent="." index="2"]

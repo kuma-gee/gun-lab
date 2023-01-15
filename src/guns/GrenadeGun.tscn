@@ -19,7 +19,7 @@ points = PoolVector2Array( 0, 0, 0, 1180 )
 script = ExtResource( 6 )
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2( -1, -4 )
+position = Vector2( -3, -1 )
 texture = ExtResource( 2 )
 
 [node name="FireRate" parent="." index="3"]

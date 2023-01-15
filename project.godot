@@ -213,6 +213,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Env="*res://shared/env/Env.gd"
+GameManager="*res://src/GameManager.tscn"
 
 [debug]
 

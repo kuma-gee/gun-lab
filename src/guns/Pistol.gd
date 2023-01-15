@@ -8,6 +8,7 @@ onready var fire_rate_timer := $FireRate
 onready var shoot_sound := $Shoot
 onready var out_of_ammo_sound := $OutOfAmmo
 onready var reload_sound := $Reload
+onready var sprite := $Sprite
 
 onready var ammo = max_ammo
 
@@ -19,6 +20,8 @@ func reload():
 	
 	reload_sound.play()
 	ammo = max_ammo
+	
+	GameManager.ui.update_weapon_ui(self)
 
 func fire(_actor: Player):
 	if not can_fire: return null
@@ -37,6 +40,8 @@ func fire(_actor: Player):
 	bullet.global_position = bullet_pos.global_position
 	bullet.global_rotation = bullet_pos.global_rotation
 	shoot_sound.play()
+	
+	GameManager.ui.update_weapon_ui(self)
 	return bullet
 
 func _on_FireRate_timeout():

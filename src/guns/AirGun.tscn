@@ -16,6 +16,7 @@ knockback_force = 300
 visible = false
 
 [node name="Sprite" parent="." index="1"]
+position = Vector2( -4, -2 )
 texture = ExtResource( 2 )
 
 [node name="FireRate" parent="." index="3"]

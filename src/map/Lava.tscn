@@ -73,6 +73,8 @@ shader_param/surface_texture = SubResource( 4 )
 [node name="Lava" type="Node2D"]
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource( 2 )
 damage = 100
 
