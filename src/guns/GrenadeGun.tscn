@@ -9,7 +9,6 @@
 
 [node name="GrenadeGun" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
-max_ammo = 2
 bullet_scene = ExtResource( 3 )
 force = 300
 bullet_gravity = 10

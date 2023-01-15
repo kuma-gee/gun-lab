@@ -46,27 +46,31 @@ func _physics_process(delta):
 func _get_aim_dir():
 	return global_position.direction_to(get_global_mouse_position()).normalized()
 
+func _get_index_for_keycode(code):
+	match code:
+		KEY_1: return 0
+		KEY_2: return 1
+		KEY_3: return 2
+		KEY_4: return 3
+		_: return null
 
-func _on_PlayerInput_just_pressed(action):
-	if action == "interact":
+func _on_PlayerInput_just_pressed(ev: InputEvent):
+	if ev.is_action_pressed("interact"):
 		hand.interact()
-	if action == "fire":
+	elif ev.is_action_pressed("fire"):
 		weapons.get_active_weapon().fire(self)
-	elif action == "reload":
+	elif ev.is_action_pressed("reload"):
 		weapons.get_active_weapon().reload()
-	elif action == "weapon_1":
-		weapons.active_weapon_idx = 0
-	elif action == "weapon_2":
-		weapons.active_weapon_idx = 1
-	elif action == "weapon_3":
-		weapons.active_weapon_idx = 2
-	elif action == "move_down":
+	elif ev.is_action_pressed("move_down"):
 		var last_collision = get_last_slide_collision()
 		if last_collision:
-			print("last_collision", last_collision.collider)
 			var collider = last_collision.collider
 			if collider is OneWayCollision:
 				collider.add_exception(self)
+	elif ev is InputEventKey:
+		var idx = _get_index_for_keycode(ev.scancode)
+		if idx != null:
+			weapons.active_weapon_idx = idx
 		
 func pickup_weapon(weapon: PackedScene):
 	weapons.add_weapon(weapon)

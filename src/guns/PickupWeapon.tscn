@@ -1,26 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/guns/PickupWeapon.gd" type="Script" id=1]
 [ext_resource path="res://assets/Package.png" type="Texture" id=2]
 [ext_resource path="res://src/guns/Collect.wav" type="AudioStream" id=3]
+[ext_resource path="res://shared/items/Interactable.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 3 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 8 )
 
-[node name="PickupWeapon" type="Area2D"]
+[node name="PickupWeapon" type="KinematicBody2D"]
 collision_layer = 32
-collision_mask = 0
 script = ExtResource( 1 )
-sprite_path = NodePath("Sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="Interactable" type="Area2D" parent="Sprite"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Interactable"]
+shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -10.0
 
+[connection signal="interacted" from="Sprite/Interactable" to="." method="_on_Interactable_interacted"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

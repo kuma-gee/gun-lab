@@ -1,6 +1,6 @@
 class_name Interactable extends Area2D
 
-signal interacted()
+signal interacted(actor)
 signal unhightlight()
 
 export var sprite_path: NodePath
@@ -20,5 +20,5 @@ func unhighlight():
 		emit_signal("unhightlight")
 
 
-func interact(_actor):
-	emit_signal("interacted")
+func interact(actor):
+	emit_signal("interacted", actor)

@@ -130,7 +130,6 @@ position = Vector2( 2, 2 )
 [node name="Weapons" type="Node2D" parent="Body/ArmRoot"]
 position = Vector2( -7, 3 )
 script = ExtResource( 8 )
-max_weapons = 4
 
 [node name="Pistol" parent="Body/ArmRoot/Weapons" instance=ExtResource( 3 )]
 
