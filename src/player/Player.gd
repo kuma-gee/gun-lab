@@ -16,6 +16,7 @@ onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") *
 
 var velocity = Vector2.ZERO
 var camera_point = null
+var died = false
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);
@@ -72,3 +73,9 @@ func pickup_weapon(weapon: PackedScene):
 
 func knockback(force: Vector2):
 	velocity += force
+
+
+func _on_HurtBox_hit():
+	died = true
+	input.disable()
+	hide()

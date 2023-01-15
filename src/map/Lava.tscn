@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/map/lava.png" type="Texture" id=1]
+[ext_resource path="res://shared/combat/HitBox.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 69, 17 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform vec4 color : hint_color = vec4(1, 0.2, 0, 1);
+uniform vec4 lighter_color: hint_color = vec4(1, 0.47, 0, 1.0);
+uniform vec4 darker_color : hint_color = vec4(0.6, 0.2, 0, 1);
+uniform vec4 edge_color : hint_color = vec4(1, 0.7, 0, 1);
+uniform sampler2D surface_texture;
+uniform vec2 flow_speed = vec2(3.0, 0.0);
+
+varying vec2 vert;
+
+void vertex() {
+    vert = VERTEX;
+}
+
+void fragment() {
+    vec4 input = texture(TEXTURE, UV);
+
+    if (input.a == 0.0) {
+        COLOR = input;
+
+    } else {
+        // For the surface we move the noise texture over itself to generate blobs
+        vec2 map_uv = vert / vec2(32.0);
+        vec4 surface1 = texture(surface_texture, map_uv + floor(TIME * flow_speed) * TEXTURE_PIXEL_SIZE);
+        vec4 surface2 = texture(surface_texture, map_uv);
+        float v = (surface1 + surface2).r;
+
+        // Then we colour each blob area based on its brightness
+        vec4 lava = color;
+        if (v >= 1.1) {
+            lava = darker_color;
+        } else if (v > 0.95) {
+            lava = lighter_color;
+        }
+
+        // Then we actually render the lava based on the actual pixel
+        if (input.r > 0.5) {
+            COLOR = edge_color;
+        } else if (input.b > 0.5) {
+            COLOR = lava;
+        } else {
+            COLOR = vec4(0);
+        }
+    }
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1840
+noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 0.2, 0, 1 )
+shader_param/lighter_color = Color( 1, 0.47, 0, 1 )
+shader_param/darker_color = Color( 0.6, 0.2, 0, 1 )
+shader_param/edge_color = Color( 1, 0.7, 0, 1 )
+shader_param/flow_speed = Vector2( 2, 0 )
+shader_param/surface_texture = SubResource( 4 )
+
+[node name="Lava" type="Node2D"]
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource( 2 )
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+scale = Vector2( 4.06061, 1 )
+texture = ExtResource( 1 )

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal message_opened()
+
 export var message_text := ""
 
 onready var message := $Message
@@ -13,6 +15,7 @@ func _ready():
 func _on_Interactable_interacted():
 	message.global_position = global_position
 	message.show()
+	emit_signal("message_opened")
 
 
 func _on_Interactable_unhightlight():
