@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Start.gd" type="Script" id=1]
+[ext_resource path="res://addons/menu-system/Options.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Game.tscn" type="PackedScene" id=3]
 
 [node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
+game_scene = ExtResource( 3 )
+
+[node name="Start" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start"]
+margin_left = 279.0
+margin_top = 146.0
+margin_right = 361.0
+margin_bottom = 214.0
+
+[node name="New" type="Button" parent="Start/VBoxContainer"]
+margin_right = 82.0
+margin_bottom = 20.0
+text = "New Game"
+
+[node name="Load" type="Button" parent="Start/VBoxContainer"]
+visible = false
+margin_top = 24.0
+margin_right = 84.0
+margin_bottom = 44.0
+text = "Load Game"
+
+[node name="Options" type="Button" parent="Start/VBoxContainer"]
+margin_top = 24.0
+margin_right = 82.0
+margin_bottom = 44.0
+text = "Options"
+
+[node name="Exit" type="Button" parent="Start/VBoxContainer"]
+margin_top = 48.0
+margin_right = 82.0
+margin_bottom = 68.0
+text = "Exit"
+
+[node name="Options" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="Start/VBoxContainer/New" to="." method="_on_New_pressed"]
+[connection signal="pressed" from="Start/VBoxContainer/Options" to="." method="_on_Options_pressed"]
