@@ -11,4 +11,5 @@ shader_param/modulate = null
 material = SubResource( 2 )
 margin_right = 24.0
 margin_bottom = 14.0
+mouse_filter = 2
 script = ExtResource( 3 )

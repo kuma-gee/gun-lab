@@ -8,7 +8,7 @@
 [node name="AirGun" instance=ExtResource( 1 )]
 position = Vector2( 8, -1 )
 script = ExtResource( 4 )
-max_ammo = 2
+max_ammo = 3
 bullet_scene = ExtResource( 3 )
 knockback_force = 300
 

@@ -1,5 +1,8 @@
 class_name Player extends KinematicBody2D
 
+signal ammo_changed(ammo, max_ammo)
+signal weapon_changed(weapon, slot)
+
 export var accel = 1000
 export var speed = 200
 export var jump_force = 400
@@ -19,6 +22,18 @@ var logger = Logger.new("Player")
 var velocity = Vector2.ZERO
 var camera_point = null
 var died = false
+
+func _ready():
+	yield(get_parent(), "ready")
+	weapons.connect("weapon_change", self, "_on_weapon_change")
+	weapons.emit_current_weapon()
+
+func _on_weapon_change(weapon, slot):
+	emit_signal("weapon_changed", weapon, slot)
+
+func _emit_current_ammo():
+	var weapon = weapons.get_active_weapon()
+	emit_signal("ammo_changed", weapon.ammo, weapon.max_ammo)
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);
@@ -62,8 +77,10 @@ func _on_PlayerInput_just_pressed(ev: InputEvent):
 	elif ev.is_action_pressed("fire"):
 		logger.debug("Player fired weapon")
 		weapons.get_active_weapon().fire(self)
+		_emit_current_ammo()
 	elif ev.is_action_pressed("reload"):
 		weapons.get_active_weapon().reload()
+		_emit_current_ammo()
 	elif ev.is_action_pressed("move_down"):
 		var last_collision = get_last_slide_collision()
 		if last_collision:

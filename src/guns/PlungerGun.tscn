@@ -26,6 +26,9 @@ texture = ExtResource( 2 )
 [node name="Position2D" parent="." index="2"]
 position = Vector2( -13, -3 )
 
+[node name="FireRate" parent="." index="3"]
+wait_time = 0.5
+
 [node name="Shoot" parent="." index="4"]
 volume_db = -20.0
 pitch_scale = 0.7

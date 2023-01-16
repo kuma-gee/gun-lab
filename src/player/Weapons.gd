@@ -1,14 +1,15 @@
 extends Node2D
 
+signal weapon_change(weapon, slot)
+
 export var max_weapons = 3
 
 const PICKUP_SCENE = preload("res://src/guns/PickupWeapon.tscn")
 
 var active_weapon_idx = 0 setget _set_active_weapon_idx
 
-func _ready():
-	GameManager.ui.update_weapon_ui(get_active_weapon())
-	GameManager.ui.update_weapon_slots(get_children(), active_weapon_idx)
+func emit_current_weapon():
+	emit_signal("weapon_change", get_active_weapon(), active_weapon_idx)
 
 func _set_active_weapon_idx(id: int):
 	if not get_active_weapon(id): return
@@ -17,12 +18,11 @@ func _set_active_weapon_idx(id: int):
 		get_active_weapon().hide()
 
 	active_weapon_idx = id
-	GameManager.ui.update_weapon_slots(get_children(), active_weapon_idx)
+	emit_current_weapon()
 	
 	var active = get_active_weapon()
 	if active:
 		active.show()
-		GameManager.ui.update_weapon_ui(active)
 
 
 func get_active_weapon(id = active_weapon_idx):
