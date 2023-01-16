@@ -6,11 +6,11 @@ onready var root := get_parent()
 onready var pause := $Pause
 onready var options := $Options
 
-onready var back_button := $Control/Pause/CenterContainer/VBoxContainer/Back
+onready var back_button := $Pause/CenterContainer/VBoxContainer/Back
 
 func _ready():
 	clear_menu()
-	back_button.visible = !!start_scene
+	back_button.visible = start_scene != null
 
 
 func _handle_event(event: InputEvent):

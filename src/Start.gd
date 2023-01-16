@@ -9,7 +9,7 @@ func _ready():
 	change_menu(start)
 
 func _on_New_pressed():
-	get_tree().change_scene_to(game_scene)
+	SceneManager.change_scene(game_scene)
 	
 
 func _on_Options_pressed():

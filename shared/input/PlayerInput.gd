@@ -3,6 +3,8 @@ class_name PlayerInput extends InputReader
 export var joypad = false
 export var device_id = 0
 
+func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 func is_player_event(event: InputEvent) -> bool:
 	return joypad == _is_joypad_event(event) and device_id == event.device
