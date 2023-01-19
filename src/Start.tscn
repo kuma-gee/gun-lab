@@ -48,3 +48,4 @@ text = "Exit"
 
 [connection signal="pressed" from="Start/VBoxContainer/New" to="." method="_on_New_pressed"]
 [connection signal="pressed" from="Start/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Start/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

@@ -14,3 +14,7 @@ func _on_New_pressed():
 
 func _on_Options_pressed():
 	change_menu(options)
+
+
+func _on_Exit_pressed():
+	get_tree().quit()

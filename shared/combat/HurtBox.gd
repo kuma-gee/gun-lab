@@ -18,6 +18,8 @@ func damage(dmg: int):
 	if invincibility:
 		collision.set_deferred("disabled", true)
 		invincibility_timer.start()
+	else:
+		collision.set_deferred("disabled", true)
 
 
 func _on_InvincibilityTimer_timeout():

@@ -2,6 +2,7 @@ class_name Player extends KinematicBody2D
 
 signal ammo_changed(ammo, max_ammo)
 signal weapon_changed(weapon, slot)
+signal died()
 
 export var accel = 1000
 export var speed = 200
@@ -107,6 +108,7 @@ func knockback(force: Vector2):
 
 func _on_HurtBox_hit():
 	died = true
+	emit_signal("died")
 	input.disable()
 	hide()
 	logger.debug("Player died")
