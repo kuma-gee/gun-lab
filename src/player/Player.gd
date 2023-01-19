@@ -14,14 +14,19 @@ onready var anim := $AnimationPlayer
 onready var hand := $Hand
 
 onready var weapons := $Body/ArmRoot/Weapons
+onready var remote_transform := $RemoteTransform2D
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
 
 var logger = Logger.new("Player")
 
 var velocity = Vector2.ZERO
-var camera_point = null
+var camera_point = null setget _set_camera_point
 var died = false
+
+func _set_camera_point(point):
+	camera_point = point
+	remote_transform.update_position = not point
 
 func _ready():
 	yield(get_parent(), "ready")
@@ -37,6 +42,7 @@ func _emit_current_ammo():
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);
+
 
 func _physics_process(delta):
 	velocity.x = move_toward(velocity.x, _get_motion().x * speed, accel * delta)

@@ -24,3 +24,11 @@ func _on_EndMessage_message_opened():
 func _on_EndTimer_timeout():
 	for x in range(end_tile_start.x, end_tile_end.x + 1):
 		remove_tile(Vector2(x, end_tile_start.y))
+
+
+func _on_Button_opened():
+	pass # Replace with function body.
+
+
+func _on_Button2_opened():
+	pass # Replace with function body.
