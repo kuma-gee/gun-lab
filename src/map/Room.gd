@@ -1,4 +1,4 @@
-class_name ParentRoom extends TileMap
+class_name ParentRoom extends Node2D
 
 onready var room := $Room
 onready var bgm := $BGM

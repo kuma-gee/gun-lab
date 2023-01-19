@@ -119,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-css-theme/Options.gd"
 }, {
-"base": "TileMap",
+"base": "Node2D",
 "class": "ParentRoom",
 "language": "GDScript",
 "path": "res://src/map/Room.gd"

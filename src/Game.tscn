@@ -23,7 +23,7 @@ script = ExtResource( 3 )
 player_path = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 624, 140 )
+position = Vector2( 27, 140 )
 
 [node name="Construction" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2157, 264 )
@@ -32,6 +32,7 @@ position = Vector2( 2157, 264 )
 position = Vector2( 184, -247 )
 
 [node name="Pause" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [connection signal="ammo_changed" from="Player" to="." method="_on_Player_ammo_changed"]
 [connection signal="weapon_changed" from="Player" to="." method="_on_Player_weapon_changed"]
