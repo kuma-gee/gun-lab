@@ -1,3 +1,65 @@
+$primary-color: #333;
+$focus-color: #fff;
+$button-padding: 2 4;
+
+@mixin normal-state {
+  &,
+  &:disabled {
+    @content;
+  }
+}
+
+@mixin active-state {
+  &:hover,
+  &:focus,
+  &:pressed {
+    @content;
+  }
+}
+
 body {
   font-family: url(font.tres);
+}
+
+Button {
+  @include normal-state {
+    background: none;
+    color: #{$focus-color};
+    padding: #{$button-padding};
+  }
+
+  @include active-state {
+    background: #{$focus-color};
+    color: #{$primary-color};
+    padding: #{$button-padding};
+  }
+}
+
+TabContainer {
+  &:tab_fg {
+    background: none;
+    color: #{$focus-color};
+    padding: #{$button-padding};
+  }
+  &:tab_bg {
+    background: #{$focus-color};
+    color: #{$primary-color};
+    padding: #{$button-padding};
+  }
+}
+
+.simple {
+  Button {
+    @include normal-state {
+      background: none;
+      color: #{$primary-color};
+      padding: #{$button-padding};
+    }
+
+    @include active-state {
+      background: none;
+      color: #{$focus-color};
+      padding: #{$button-padding};
+    }
+  }
 }
