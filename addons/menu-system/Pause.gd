@@ -1,5 +1,7 @@
 extends Menu
 
+signal menu_stack_change(length)
+
 export var start_scene: PackedScene
 
 onready var root := get_parent()
@@ -27,8 +29,7 @@ func _handle_event(event: InputEvent):
 func update_menu():
 	.update_menu()
 	
-	root.visible = menu_stack.size() > 0
-	get_tree().paused = root.visible
+	emit_signal("menu_stack_change", menu_stack.size())
 
 
 func _on_Options_pressed():

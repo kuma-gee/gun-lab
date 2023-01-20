@@ -1,6 +1,9 @@
-$primary-color: #333;
+$primary-color: #666;
 $focus-color: #fff;
+
 $button-padding: 2 4;
+
+$slider-bg: #fff;
 
 @mixin normal-state {
   &,
@@ -36,15 +39,42 @@ Button {
 }
 
 TabContainer {
-  &:tab_fg {
-    background: none;
-    color: #{$focus-color};
-    padding: #{$button-padding};
-  }
+  &:tab_fg,
   &:tab_bg {
-    background: #{$focus-color};
+    background: none;
+    border-width: 0 0 2 0;
+    padding: 0 10;
+    border-color: transparent;
+  }
+
+  &:tab_fg {
+    border-color: #{$focus-color};
+  }
+  &:fg {
+    color: #{$focus-color};
+  }
+
+  &:bg {
     color: #{$primary-color};
-    padding: #{$button-padding};
+  }
+
+  &:panel {
+    background: none;
+    padding: 10;
+  }
+}
+
+HSlider {
+  --icons-grabber: url(./assets/grabber.png);
+  --icons-grabber-highlight: url(./assets/grabber.png);
+
+  &:slider {
+    border-width: 2 0 0 0;
+    border-color: #{$slider-bg};
+  }
+  &:grabber_area,
+  &:grabber_area_highlight {
+    background: #{$slider-bg};
   }
 }
 

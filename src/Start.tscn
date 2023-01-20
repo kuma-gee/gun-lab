@@ -21,10 +21,12 @@ margin_left = 287.0
 margin_top = 150.0
 margin_right = 352.0
 margin_bottom = 209.0
+alignment = 1
 
 [node name="New" type="Button" parent="Start/VBoxContainer"]
 margin_right = 65.0
 margin_bottom = 17.0
+size_flags_horizontal = 4
 text = "New Game"
 
 [node name="Load" type="Button" parent="Start/VBoxContainer"]
@@ -32,18 +34,23 @@ visible = false
 margin_top = 24.0
 margin_right = 84.0
 margin_bottom = 44.0
+size_flags_horizontal = 4
 text = "Load Game"
 
 [node name="Options" type="Button" parent="Start/VBoxContainer"]
+margin_left = 5.0
 margin_top = 21.0
-margin_right = 65.0
+margin_right = 59.0
 margin_bottom = 38.0
+size_flags_horizontal = 4
 text = "Options"
 
 [node name="Exit" type="Button" parent="Start/VBoxContainer"]
+margin_left = 16.0
 margin_top = 42.0
-margin_right = 65.0
+margin_right = 48.0
 margin_bottom = 59.0
+size_flags_horizontal = 4
 text = "Exit"
 
 [node name="Options" parent="." instance=ExtResource( 2 )]

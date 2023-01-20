@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _unhandled_input(event):
-	if event.is_action("ui_cancel"):
+	if visible and event.is_action("ui_cancel"):
 		get_tree().set_input_as_handled()
 
 
