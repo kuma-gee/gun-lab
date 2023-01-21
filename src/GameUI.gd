@@ -5,6 +5,10 @@ onready var weapon_container := $MarginContainer/MarginContainer/HBoxContainer/W
 
 const weapon_ui := preload("res://src/menu/Weapon.tscn")
 
+func _ready():
+	Events.connect("player_ammo_change", self, "update_ammo")
+	Events.connect("player_weapon_change", self, "changed_weapon")
+
 func changed_weapon(weapon: Pistol, weapon_slot: int):
 	for child in weapon_container.get_children():
 		child.unfocus()

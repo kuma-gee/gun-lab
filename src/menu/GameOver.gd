@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+func _ready():
+	Events.connect("player_died", self, "_on_player_died")
+
+func _on_player_died():
+	visible = true
+
 func _unhandled_input(event):
 	if visible and event.is_action("ui_cancel"):
 		get_tree().set_input_as_handled()

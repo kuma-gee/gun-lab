@@ -221,6 +221,7 @@ config/icon="res://icon.png"
 Env="*res://shared/env/Env.gd"
 GameManager="*res://src/GameManager.tscn"
 SceneManager="*res://addons/scene-system/SceneManager.tscn"
+Events="*res://src/Events.gd"
 
 [debug]
 

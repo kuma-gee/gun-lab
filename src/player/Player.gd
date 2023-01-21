@@ -1,9 +1,5 @@
 class_name Player extends KinematicBody2D
 
-signal ammo_changed(ammo, max_ammo)
-signal weapon_changed(weapon, slot)
-signal died()
-
 export var accel = 1000
 export var speed = 200
 export var jump_force = 400
@@ -35,11 +31,13 @@ func _ready():
 	weapons.emit_current_weapon()
 
 func _on_weapon_change(weapon, slot):
-	emit_signal("weapon_changed", weapon, slot)
+	Events.emit_signal("player_weapon_change", weapon, slot)
+
 
 func _emit_current_ammo():
 	var weapon = weapons.get_active_weapon()
-	emit_signal("ammo_changed", weapon.ammo, weapon.max_ammo)
+	Events.emit_signal("player_ammo_change", weapon.ammo, weapon.max_ammo)
+
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0);
@@ -108,7 +106,7 @@ func knockback(force: Vector2):
 
 func _on_HurtBox_hit():
 	died = true
-	emit_signal("died")
+	Events.emit_signal("player_died")
 	input.disable()
 	hide()
 	logger.debug("Player died")
