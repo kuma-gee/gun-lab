@@ -42,9 +42,9 @@ func add_weapon(weapon: PackedScene):
 		var curr = get_active_weapon()
 		add_child_below_node(curr, node)
 		
-		var pickup = PICKUP_SCENE.instance()
-		get_tree().current_scene.add_child(pickup)
-		pickup.create_item(curr)
+#		var pickup = PICKUP_SCENE.instance()
+#		get_tree().current_scene.add_child(pickup)
+#		pickup.create_item(curr)
 		
 		remove_child(curr)
 		self.active_weapon_idx = active_weapon_idx

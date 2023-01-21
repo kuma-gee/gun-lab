@@ -1,9 +1,12 @@
 $primary-color: #666;
 $focus-color: #fff;
+$half-transparent: Color(0, 0, 0, 0.5);
 
 $button-padding: 2 4;
 
 $slider-bg: #fff;
+$scrollbar-bg: $primary-color;
+$scrollpanel-bg: $half-transparent;
 
 @mixin normal-state {
   &,
@@ -78,6 +81,24 @@ HSlider {
   }
 }
 
+VScrollBar {
+  &:grabber,
+  &:grabber_hightlight {
+    background: #{$slider-bg};
+  }
+
+  &:scroll {
+    border-width: 0 0 0 2;
+    border-color: #{$scrollbar-bg};
+  }
+}
+
+ScrollContainer {
+  &:bg {
+    background: #{$scrollpanel-bg};
+  }
+}
+
 .simple {
   Button {
     @include normal-state {
@@ -91,5 +112,10 @@ HSlider {
       color: #{$focus-color};
       padding: #{$button-padding};
     }
+  }
+}
+
+.select {
+  Button {
   }
 }

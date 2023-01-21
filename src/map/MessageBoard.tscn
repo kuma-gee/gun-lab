@@ -34,11 +34,11 @@ theme = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="Message/Message"]
 margin_right = 127.0
-margin_bottom = 19.0
+margin_bottom = 39.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Message/Message"]
 margin_right = 127.0
-margin_bottom = 19.0
+margin_bottom = 39.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -48,7 +48,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 122.0
-margin_bottom = 14.0
+margin_bottom = 34.0
 text = "This is a sample text"
 autowrap = true
 
